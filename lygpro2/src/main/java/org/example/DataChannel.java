@@ -31,11 +31,14 @@ class DataChannel {
                 e.fillInStackTrace();
             }
         }
+
         buffer[in] = data;
+        System.out.println("In: " + in);
         System.out.println("Sent: " + data);
         in = (in + 1) % size;
         count++;
         notifyAll();
+
     }
 
     public synchronized int receiveData() {

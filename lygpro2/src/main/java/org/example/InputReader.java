@@ -22,7 +22,7 @@ class InputReader extends Thread {
                 channel.sendData(data);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            e.fillInStackTrace();
         }
     }
 }
