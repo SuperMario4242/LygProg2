@@ -16,16 +16,25 @@ class OutputWriter extends Thread {
     @Override
     public void run() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
-            int i=0;
-            while (i<channel.getSize()) {
-                int data = channel.receiveData();
-                writer.write("Received data " + i + " " + Integer.toString(data));
+            //!channel.getEnd()
+             int data;
+            while(true) {
+                Thread.sleep(100);
+                data = channel.receiveData();
+                if(data == 0){
+                    break;
+                }
+                writer.write(Integer.toString(data));
                 writer.newLine();
                 writer.flush();
-                i++;
             }
         } catch (IOException e) {
             e.fillInStackTrace();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
+//        catch (InterruptedException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 }
