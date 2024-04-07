@@ -1,23 +1,19 @@
 package org.example;
-
-
 import java.io.*;
+
 
 
 class OutputWriter extends Thread {
     private final DataChannel channel;
     private final String outputFile;
-
     public OutputWriter(DataChannel channel, String outputFile) {
         this.channel = channel;
         this.outputFile = outputFile;
     }
-
     @Override
     public void run() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
-            //!channel.getEnd()
-             int data;
+            int data;
             while(true) {
                 Thread.sleep(100);
                 data = channel.receiveData();
@@ -33,8 +29,6 @@ class OutputWriter extends Thread {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-//        catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+
     }
 }

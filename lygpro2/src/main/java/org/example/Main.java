@@ -20,6 +20,5 @@ public class Main {
         } catch (InterruptedException e) {
             e.fillInStackTrace();
         }
-        //System.out.println("Viskas atlikta. Programa baigia darbą.");
     }
 }
